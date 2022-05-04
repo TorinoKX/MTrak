@@ -8,6 +8,7 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  today = new Date()
   medications = [
     { name: "Lisinopril", manufacturer: "Lupin Ltd.", startDate: "04/05/22", endDate: "04/08/22" },
     { name: "Levothyroxine", manufacturer: "Abbott Labs", startDate: "04/05/22", endDate: "04/08/22" },
