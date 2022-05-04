@@ -10,8 +10,20 @@
 </ion-header>
 
 <ion-content>
-
   <ion-list>
+    <ion-item>
+      <ion-label>Image: </ion-label>
+      <ion-button fill="clear" id="open-image-example">
+        <ion-thumbnail slot="end">
+          <img src="assets/images/pill-exa.jpg" />
+        </ion-thumbnail>
+      </ion-button>
+      <ion-popover trigger="open-image-example" show-backdrop="false">
+        <ng-template>
+          <ion-label class="ion-padding-top ion-padding-bottom">Coming Soon!</ion-label>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
     <ion-item>
       <ion-label>Name: </ion-label>
       <ion-input type="text" [(ngModel)]="name" clearInput></ion-input>
@@ -22,31 +34,47 @@
     </ion-item>
     <ion-item>
       <ion-label>Start Date: </ion-label>
-      <ion-label>{{startDate}}</ion-label>
-      <ion-button fill="clear" id="open-date-input-start">
+      <ion-label>{{startDate | date: 'dd/MM/yyyy'}}</ion-label>
+      <ion-button fill="clear" id="open-modal1">
         <ion-icon icon="calendar"></ion-icon>
       </ion-button>
-      <ion-popover trigger="open-date-input-start" show-backdrop="false">
+      <ion-modal trigger="open-modal1">
         <ng-template>
-          <ion-datetime #popoverDatetime2 presentation="date" (ionChange)="startDate = popoverDatetime2.value">
-          </ion-datetime>
+          <ion-content>
+            <ion-datetime #modalDatetime1 show-default-buttons presentation="date"
+              (ionChange)="startDate = modalDatetime1.value">
+            </ion-datetime>
+          </ion-content>
         </ng-template>
-      </ion-popover>
+      </ion-modal>
     </ion-item>
     <ion-item>
       <ion-label>End Date: </ion-label>
-      <ion-label>{{endDate}}</ion-label>
-      <ion-button fill="clear" id="open-date-input-end">
+      <ion-label>{{endDate | date: 'dd/MM/yyyy'}}</ion-label>
+      <ion-button fill="clear" id="open-modal2">
         <ion-icon icon="calendar"></ion-icon>
       </ion-button>
-      <ion-popover trigger="open-date-input-end" show-backdrop="false">
+      <ion-modal trigger="open-modal2">
         <ng-template>
-          <ion-datetime #popoverDatetime2 presentation="date" (ionChange)="endDate = popoverDatetime2.value">
-          </ion-datetime>
+          <ion-content>
+            <ion-datetime #modalDatetime2 show-default-buttons presentation="date"
+              (ionChange)="endDate = modalDatetime2.value">
+            </ion-datetime>
+          </ion-content>
         </ng-template>
-      </ion-popover>
+      </ion-modal>
     </ion-item>
     <ion-button expand="full" (click)="closeModal()">{{btnText}}</ion-button>
   </ion-list>
 
 </ion-content>
+
+<!-- <div class="grid-item">
+  <h2>Datetime in Overlay</h2>
+  <ion-button id="open-modal">Open Datetime Modal</ion-button>
+  <ion-modal trigger="open-modal">
+    <ion-content force-overscroll="false">
+      <ion-datetime></ion-datetime>
+    </ion-content>
+  </ion-modal>
+</div> -->

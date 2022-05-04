@@ -11,7 +11,7 @@
   <ion-list>
     <ng-container *ngFor="let day of history">
       <ion-list-header>
-        {{day.date}}
+        {{day.date | date: 'dd/MM/yyyy'}}
       </ion-list-header>
       <ion-item *ngFor="let med of day.medications" [color]="med.taken ? 'success' : 'danger'">
         {{med.name}}

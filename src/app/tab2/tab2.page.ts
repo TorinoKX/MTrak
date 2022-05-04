@@ -9,12 +9,12 @@ import { ModalController } from '@ionic/angular';
 })
 export class Tab2Page {
   medications = [
-    { name: "Lisinopril", manufacturer: "Lupin Ltd.", startDate: "", endDate: "" },
-    { name: "Levothyroxine", manufacturer: "Abbott Labs", startDate: "", endDate: "" },
-    { name: "Gabapentin", manufacturer: "Pfizer", startDate: "", endDate: "" },
-    { name: "Metformin", manufacturer: "Bristol-Myers Squibb", startDate: "", endDate: "" },
-    { name: "Lipitor", manufacturer: "Viatris", startDate: "", endDate: "" },
-    { name: "Amlodipine", manufacturer: "Synthon Pharmaceuticals Inc", startDate: "", endDate: "" }
+    { name: "Lisinopril", manufacturer: "Lupin Ltd.", startDate: "04/05/22", endDate: "04/08/22" },
+    { name: "Levothyroxine", manufacturer: "Abbott Labs", startDate: "04/05/22", endDate: "04/08/22" },
+    { name: "Gabapentin", manufacturer: "Pfizer", startDate: "04/05/22", endDate: "04/08/22" },
+    { name: "Metformin", manufacturer: "Bristol-Myers Squibb", startDate: "04/05/22", endDate: "04/08/22" },
+    { name: "Lipitor", manufacturer: "Viatris", startDate: "04/05/22", endDate: "04/08/22" },
+    { name: "Amlodipine", manufacturer: "Synthon Pharmaceuticals Inc", startDate: "04/05/22", endDate: "04/08/22" }
   ];
 
   constructor(private modalController: ModalController) { }

@@ -12,12 +12,15 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list>
+  <ion-list class="ion-padding-top">
     <ion-item-sliding *ngFor="let medication of medications; index as i">
       <ion-item class="ion-padding-bottom">
+        <ion-thumbnail slot="start">
+          <img src="assets/images/pill-exa.jpg" />
+        </ion-thumbnail>
         Name: {{medication.name}}<br>
         Manufacturer: {{medication.manufacturer}}<br>
-        Take until: {{endDate}}
+        Take until: {{medication.endDate | date: 'dd/MM/yyyy'}}
       </ion-item>
       <ion-item-options class="ion-padding-bottom" side="end">
         <ion-item-option (click)="editMedication(i)">Edit</ion-item-option>
