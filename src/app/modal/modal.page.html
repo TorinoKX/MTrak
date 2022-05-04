@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{btnText}} Medication</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="cancelModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Name: </ion-label>
+      <ion-input type="text" [(ngModel)]="name" clearInput></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Manufacturer: </ion-label>
+      <ion-input type="text" [(ngModel)]="manufacturer" clearInput></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Start Date: </ion-label>
+      <ion-label>{{startDate}}</ion-label>
+      <ion-button fill="clear" id="open-date-input-start">
+        <ion-icon icon="calendar"></ion-icon>
+      </ion-button>
+      <ion-popover trigger="open-date-input-start" show-backdrop="false">
+        <ng-template>
+          <ion-datetime #popoverDatetime2 presentation="date" (ionChange)="startDate = popoverDatetime2.value">
+          </ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+    <ion-item>
+      <ion-label>End Date: </ion-label>
+      <ion-label>{{endDate}}</ion-label>
+      <ion-button fill="clear" id="open-date-input-end">
+        <ion-icon icon="calendar"></ion-icon>
+      </ion-button>
+      <ion-popover trigger="open-date-input-end" show-backdrop="false">
+        <ng-template>
+          <ion-datetime #popoverDatetime2 presentation="date" (ionChange)="endDate = popoverDatetime2.value">
+          </ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+    <ion-button expand="full" (click)="closeModal()">{{btnText}}</ion-button>
+  </ion-list>
+
+</ion-content>

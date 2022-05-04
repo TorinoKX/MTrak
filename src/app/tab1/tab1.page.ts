@@ -7,6 +7,9 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
+  untaken = ["Lisinopril", "Levothyroxine", "Gabapentin"]
+  taken = ["Metformin", "Lipitor", "Amlodipine"]
+
   constructor() {}
 
 }

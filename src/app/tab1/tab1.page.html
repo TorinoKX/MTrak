@@ -1,17 +1,32 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Today's Medication
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-list>
+    <ion-list-header>
+      <ion-title>
+        To Be Taken
+      </ion-title>
+    </ion-list-header>
+    <ion-item *ngFor="let med of untaken">
+      {{med}}
+      <ion-checkbox slot="end" checked="false" color="success"></ion-checkbox>
+    </ion-item>
+    <ion-list-header>
+      <ion-title>
+        Taken
+      </ion-title>
+    </ion-list-header>
+    <ion-item *ngFor="let med of taken">
+      {{med}}
+      <ion-checkbox slot="end" checked="true" color="success"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
