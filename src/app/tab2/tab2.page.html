@@ -20,7 +20,7 @@
         </ion-thumbnail>
         Name: {{medication.name}}<br>
         Manufacturer: {{medication.manufacturer}}<br>
-        Take until: {{medication.endDate | date: 'dd/MM/yyyy'}} {{medication.startDate.toString()}}
+        Take until: {{medication.endDate | date: 'dd/MM/yyyy'}}
       </ion-item>
       <ion-item-options class="ion-padding-bottom" side="end">
         <ion-item-option (click)="editMedication(i)">Edit</ion-item-option>
