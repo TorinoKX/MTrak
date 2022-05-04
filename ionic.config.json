@@ -1,0 +1,7 @@
+{
+  "name": "MTrak",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
