@@ -10,18 +10,14 @@
 
   <ion-list>
     <ion-list-header>
-      <ion-title>
         To Be Taken
-      </ion-title>
     </ion-list-header>
     <ion-item *ngFor="let med of untaken">
       {{med}}
       <ion-checkbox slot="end" checked="false" color="success"></ion-checkbox>
     </ion-item>
     <ion-list-header>
-      <ion-title>
         Taken
-      </ion-title>
     </ion-list-header>
     <ion-item *ngFor="let med of taken">
       {{med}}

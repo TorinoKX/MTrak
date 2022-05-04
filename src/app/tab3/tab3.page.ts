@@ -7,6 +7,40 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  history = [
+    {
+      date: 'Wed - 04/05/2022',
+      medications: [{
+        name: "Lisinopril",
+        taken: true
+      },
+      {
+        name: "Levothyroxine",
+        taken: true
+      },
+      {
+        name: "Gabapentin",
+        taken: false
+      }
+      ]
+    },
+    {
+      date: 'Tue - 03/05/2022',
+      medications: [{
+        name: "Lisinopril",
+        taken: false
+      },
+      {
+        name: "Levothyroxine",
+        taken: false
+      },
+      {
+        name: "Gabapentin",
+        taken: true
+      }
+      ]
+    }
+  ]
+  constructor() { }
 
 }

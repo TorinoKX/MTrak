@@ -1,17 +1,22 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Medication History
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-list>
+    <ng-container *ngFor="let day of history">
+      <ion-list-header>
+        {{day.date}}
+      </ion-list-header>
+      <ion-item *ngFor="let med of day.medications" [color]="med.taken ? 'success' : 'danger'">
+        {{med.name}}
+      </ion-item>
+    </ng-container>
+  </ion-list>
+
 </ion-content>
