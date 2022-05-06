@@ -43,6 +43,7 @@ export class Tab3Page {
   ]
   constructor() { }
 
+  //Converts number from 0-6 to a day of the week, 0 being Sunday and 6 being Saturday. Returns this value.
   getStringDay(day: Number) {
     var stringDay = ''
     switch (day) {

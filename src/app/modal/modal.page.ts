@@ -12,6 +12,7 @@ export class ModalPage implements OnInit {
 
   name='';
   manufacturer = '';
+  quantity = 0;
   startDate = '';
   endDate = '';
   btnText='Add';
@@ -21,6 +22,7 @@ export class ModalPage implements OnInit {
   ngOnInit() {
     this.name = this.navParams.get('name')
     this.manufacturer = this.navParams.get('manufacturer')
+    this.quantity = this.navParams.get('quantity')
     this.startDate = this.navParams.get('startDate')
     this.endDate = this.navParams.get('endDate')
 
@@ -31,10 +33,12 @@ export class ModalPage implements OnInit {
   }
   }
 
+  //Closes the modal, passes back all of the information
   closeModal(){
-    this.modalController.dismiss({name : this.name, manufacturer: this.manufacturer, startDate: this.startDate, endDate: this.endDate});
+    this.modalController.dismiss({name : this.name, manufacturer: this.manufacturer, quantity: this.quantity, startDate: this.startDate, endDate: this.endDate});
   }
 
+  //Closes the modal and passes back no information
   cancelModal(){
     this.modalController.dismiss();
   }
