@@ -12,6 +12,6 @@ export class AppComponent {
   }
 
   async init() {
-    await this.storageService.initisializeStorage();
+    await this.storageService.initializeStorage();
   }
 }

@@ -2,22 +2,27 @@ import { Component } from '@angular/core';
 import { ModalPage } from '../modal/modal.page';
 import { ModalController } from '@ionic/angular';
 
+import { StorageService } from '../storage.service';
+
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-  medications = [
-    { name: "Lisinopril", manufacturer: "Lupin Ltd.", quantity: 2, startDate: "04/05/22", endDate: "04/08/22" },
-    { name: "Levothyroxine", manufacturer: "Abbott Labs", quantity: 1, startDate: "04/05/22", endDate: "04/08/22" },
-    { name: "Gabapentin", manufacturer: "Pfizer", quantity: 4, startDate: "04/05/22", endDate: "04/08/22" },
-    { name: "Metformin", manufacturer: "Bristol-Myers Squibb", quantity: 2, startDate: "04/05/22", endDate: "04/08/22" },
-    { name: "Lipitor", manufacturer: "Viatris", quantity: 2, startDate: "04/05/22", endDate: "04/08/22" },
-    { name: "Amlodipine", manufacturer: "Synthon Pharmaceuticals Inc", quantity: 1, startDate: "04/05/22", endDate: "04/08/22" }
-  ];
 
-  constructor(private modalController: ModalController) { }
+  medications = [];
+
+  constructor(private modalController: ModalController, private storageService: StorageService) { }
+
+  async ngOnInit() {
+    await this.storageService.getMeds()
+    .then((data) => {
+      console.log(data)
+      this.medications = data;
+      console.log(this.medications)
+    })
+  }
 
   //Opens the modal with no inputs, checks if data is returned from the modal and adds it to the list if there is data.
   async addMedication() {
@@ -28,6 +33,7 @@ export class Tab2Page {
       .then((retval) => {
         if (retval.data != undefined) {
           this.medications.push(retval.data);
+          this.storageService.setMeds(this.medications)
         }
       });
     return modal.present();
@@ -37,13 +43,14 @@ export class Tab2Page {
   async editMedication(index) {
     const modal = await this.modalController.create({
       component: ModalPage,
-      componentProps: {name: this.medications[index].name, manufacturer: this.medications[index].manufacturer, quantity: this.medications[index].quantity, startDate: this.medications[index].startDate, endDate: this.medications[index].endDate}
+      componentProps: {name: this.medications[index].name, manufacturer: this.medications[index].manufacturer, amountTaken: this.medications[index].amountTaken, startDate: this.medications[index].startDate, endDate: this.medications[index].endDate}
     });
 
     modal.onDidDismiss()
       .then((retval) => {
         if (retval.data !== undefined) {
           this.medications[index] = retval.data
+          this.storageService.setMeds(this.medications)
         }
       });
       return modal.present();

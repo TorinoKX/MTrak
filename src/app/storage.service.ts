@@ -8,31 +8,31 @@ export class StorageService {
 
   constructor(private storage: Storage) { }
 
-  async initisializeStorage() {
+  async initializeStorage() {
     const storage = await this.storage.create();
 
-    if (await this.storage.get("medications") == null) {
-      await this.storage.set("medications",
+    if (await this.storage.get('medications') == null) {
+      await this.storage.set('medications',
         [
           {
-            name: "Example medication",
-            Manufacturer: "Example Manufacturer",
+            name: 'Example medication',
+            Manufacturer: 'Example Manufacturer',
             amountTaken: 1,
-            startDate: "01/01/1980",
-            endDate: "01/01/2100"
+            startDate: '01/01/1980',
+            endDate: '01/01/2100'
           }
         ]
       )
     }
 
-    if (await this.storage.get("history") == null) {
-      await this.storage.set("history",
+    if (await this.storage.get('history') == null) {
+      await this.storage.set('history',
         [
           {
             date: new Date(),
             medications: [
               {
-                name: "Example medication",
+                name: 'Example medication',
                 amountTaken: 1,
                 taken: false
               }
@@ -44,8 +44,16 @@ export class StorageService {
 
   }
 
+  async getMeds(): Promise<Array<any>> {
+    return await this.storage.get('medications')
+  }
+
+  async setMeds(data) {
+    await this.storage.set('medications', data)
+  }
+
   async getHistory(): Promise<Array<any>> {
-    return await this.storage.get("history")
+    return await this.storage.get('history')
   }
 
   async setHistory(data) {

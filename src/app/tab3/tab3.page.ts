@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StorageService } from '../storage.service';
 
 @Component({
   selector: 'app-tab3',
@@ -7,41 +8,19 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  history = [
-    {
-      date: new Date('05/04/2022'),
-      medications: [{
-        name: "Lisinopril",
-        taken: true
-      },
-      {
-        name: "Levothyroxine",
-        taken: true
-      },
-      {
-        name: "Gabapentin",
-        taken: false
-      }
-      ]
-    },
-    {
-      date: new Date('05/03/2022'),
-      medications: [{
-        name: "Lisinopril",
-        taken: false
-      },
-      {
-        name: "Levothyroxine",
-        taken: false
-      },
-      {
-        name: "Gabapentin",
-        taken: true
-      }
-      ]
-    }
-  ]
-  constructor() { }
+  today = new Date();
+  history = [];
+
+  constructor(private storageService: StorageService) { }
+
+  async ngOnInit() {
+    await this.storageService.getHistory()
+    .then((data) => {
+      console.log(data)
+      this.history = data;
+      console.log(this.history)
+    })
+  }
 
   //Converts number from 0-6 to a day of the week, 0 being Sunday and 6 being Saturday. Returns this value.
   getStringDay(day: Number) {

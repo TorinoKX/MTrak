@@ -14,13 +14,13 @@
 <ion-content [fullscreen]="true">
   <ion-list class="ion-padding-top">
     <ion-item-sliding *ngFor="let medication of medications; index as i">
-      <ion-item class="ion-padding-bottom">
+      <ion-item>
         <ion-thumbnail slot="start">
           <img src="assets/images/pill-exa.jpg" />
         </ion-thumbnail>
-        {{medication.name}} x {{medication.quantity}}
+        {{medication.name}} x {{medication.amountTaken}}
       </ion-item>
-      <ion-item-options class="ion-padding-bottom" side="end">
+      <ion-item-options side="end">
         <ion-item-option (click)="editMedication(i)">Edit</ion-item-option>
         <ion-item-option color="danger" (click)="deleteMedication(i)">Delete</ion-item-option>
       </ion-item-options>

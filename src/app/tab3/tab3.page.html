@@ -10,12 +10,17 @@
 
   <ion-list>
     <ng-container *ngFor="let day of history">
-      <ion-list-header>
-        {{getStringDay(day.date.getDay())}} - {{day.date | date: 'dd/MM/yyyy'}}
-      </ion-list-header>
-      <ion-item *ngFor="let med of day.medications" [color]="med.taken ? 'success' : 'danger'">
-        {{med.name}}
-      </ion-item>
+      <ng-container *ngIf="day.date.toLocaleDateString() < today.toLocaleDateString()">
+        <ion-list-header>
+          {{getStringDay(day.date.getDay())}} - {{day.date | date: 'dd/MM/yyyy'}}
+        </ion-list-header>
+        <ion-item *ngFor="let med of day.medications" [color]="med.taken ? 'success' : 'danger'">
+          {{med.name}}
+        </ion-item>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="history.length <= 1" >
+      <p class="ion-text-center">There's nothing to see here</p>
     </ng-container>
   </ion-list>
 
