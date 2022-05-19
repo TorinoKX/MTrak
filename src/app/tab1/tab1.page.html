@@ -10,19 +10,23 @@
 
   <ion-list>
     <ion-list-header justify-content-center align-items-center>
-        To Be Taken
+      To Be Taken
     </ion-list-header>
-    <ion-item *ngFor="let med of untaken">
-      {{med}}
-      <ion-checkbox slot="end" checked="false" color="success"></ion-checkbox>
-    </ion-item>
+    <ng-container *ngFor="let med of medications">
+      <ion-item *ngIf="med.taken == false">
+        {{med.name}}
+        <ion-checkbox slot="end" checked="false" color="success" [(ngModel)]="med.taken" (ionChange)="updateHist()"></ion-checkbox>
+      </ion-item>
+    </ng-container>
     <ion-list-header>
-        Taken
+      Taken
     </ion-list-header>
-    <ion-item *ngFor="let med of taken">
-      {{med}}
-      <ion-checkbox slot="end" checked="true" color="success"></ion-checkbox>
-    </ion-item>
+    <ng-container *ngFor="let med of medications">
+      <ion-item *ngIf="med.taken">
+        {{med.name}}
+        <ion-checkbox slot="end" checked="true" color="success" [(ngModel)]="med.taken" (ionChange)="updateHist()"></ion-checkbox>
+      </ion-item>
+    </ng-container>
   </ion-list>
 
 </ion-content>
