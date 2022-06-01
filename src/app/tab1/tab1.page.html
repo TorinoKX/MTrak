@@ -7,23 +7,23 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
+  <ion-button (click)="resetHistory()">Reset History</ion-button>
   <ion-list>
     <ion-list-header justify-content-center align-items-center>
       To Be Taken
     </ion-list-header>
-    <ng-container *ngFor="let med of medications">
+    <ng-container *ngFor="let med of history.medications">
       <ion-item *ngIf="med.taken == false">
-        {{med.name}}
+        {{med.medication.name}}
         <ion-checkbox slot="end" checked="false" color="success" [(ngModel)]="med.taken" (ionChange)="updateHist()"></ion-checkbox>
       </ion-item>
     </ng-container>
     <ion-list-header>
       Taken
     </ion-list-header>
-    <ng-container *ngFor="let med of medications">
+    <ng-container *ngFor="let med of history.medications">
       <ion-item *ngIf="med.taken">
-        {{med.name}}
+        {{med.medication.name}}
         <ion-checkbox slot="end" checked="true" color="success" [(ngModel)]="med.taken" (ionChange)="updateHist()"></ion-checkbox>
       </ion-item>
     </ng-container>

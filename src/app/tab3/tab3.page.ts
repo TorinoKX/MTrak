@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { StorageService } from '../storage.service';
+import { History } from '../history';
 
 @Component({
   selector: 'app-tab3',
@@ -9,17 +11,18 @@ import { StorageService } from '../storage.service';
 export class Tab3Page {
 
   today = new Date();
-  history = [];
+  history: Observable<Array<History>>;
 
   constructor(private storageService: StorageService) { }
 
-  async ngOnInit() {
-    await this.storageService.getHistory()
-    .then((data) => {
-      console.log(data)
-      this.history = data;
-      console.log(this.history)
-    })
+  ngOnInit() {
+    this.history = this.storageService.getHistory()
+    // await this.storageService.getHistory()
+    // .then((data) => {
+    //   console.log(data)
+    //   this.history = data;
+    //   console.log(this.history)
+    // })
   }
 
   //Converts number from 0-6 to a day of the week, 0 being Sunday and 6 being Saturday. Returns this value.

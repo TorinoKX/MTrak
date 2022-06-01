@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NavParams,ModalController } from '@ionic/angular';
+import { NavParams, ModalController } from '@ionic/angular';
 import { IonDatetime } from '@ionic/angular';
+import { Medication } from '../medication';
 
 @Component({
   selector: 'app-modal',
@@ -10,36 +11,46 @@ import { IonDatetime } from '@ionic/angular';
 export class ModalPage implements OnInit {
   @ViewChild(IonDatetime, { static: true }) datetime: IonDatetime;
 
-  name='';
-  manufacturer = '';
-  amountTaken = 0;
-  startDate = '';
-  endDate = '';
-  btnText='Add';
+  medication: Medication;
+  // name='';
+  // manufacturer = '';
+  // amountTaken = 0;
+  // startDate = '';
+  // endDate = '';
+  btnText = 'Add';
 
-  constructor(private navParams:NavParams, private modalController:ModalController) { }
+  constructor(private navParams: NavParams, private modalController: ModalController) { }
 
   ngOnInit() {
-    this.name = this.navParams.get('name')
-    this.manufacturer = this.navParams.get('manufacturer')
-    this.amountTaken = this.navParams.get('amountTaken')
-    this.startDate = this.navParams.get('startDate')
-    this.endDate = this.navParams.get('endDate')
+    
+    this.medication = this.navParams.get('medication')
 
-    if (this.name != undefined){
+    // this.name = this.navParams.get('name')
+    // this.manufacturer = this.navParams.get('manufacturer')
+    // this.amountTaken = this.navParams.get('amountTaken')
+    // this.startDate = this.navParams.get('startDate')
+    // this.endDate = this.navParams.get('endDate')
+
+    if (this.medication != undefined) {
       this.btnText = 'Edit';
-    }else{
+    } else {
+      this.medication = new Medication();
+      this.medication.name = '';
+      this.medication.manufacturer = '';
+      this.medication.amountTaken = 0;
+      this.medication.startDate = new Date();
+      this.medication.endDate = new Date();
       this.btnText = 'Add';
-  }
+    }
   }
 
   //Closes the modal, passes back all of the information
-  closeModal(){
-    this.modalController.dismiss({name : this.name, manufacturer: this.manufacturer, amountTaken: this.amountTaken, startDate: this.startDate, endDate: this.endDate});
+  closeModal() {
+    this.modalController.dismiss(this.medication);
   }
 
   //Closes the modal and passes back no information
-  cancelModal(){
+  cancelModal() {
     this.modalController.dismiss();
   }
 }

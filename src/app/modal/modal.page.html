@@ -26,19 +26,19 @@
     </ion-item>
     <ion-item>
       <ion-label>Name: </ion-label>
-      <ion-input type="text" [(ngModel)]="name" clearInput></ion-input>
+      <ion-input type="text" [(ngModel)]="medication.name" clearInput></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Manufacturer: </ion-label>
-      <ion-input type="text" [(ngModel)]="manufacturer" clearInput></ion-input>
+      <ion-input type="text" [(ngModel)]="medication.manufacturer" clearInput></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Amount to take: </ion-label>
-      <ion-input type="tel" [(ngModel)]="amountTaken" maxlength="2" clearInput></ion-input>
+      <ion-input type="tel" [(ngModel)]="medication.amountTaken" maxlength="2" clearInput></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Start Date: </ion-label>
-      <ion-label>{{startDate | date: 'dd/MM/yyyy'}}</ion-label>
+      <ion-label>{{medication.startDate | date: 'dd/MM/yyyy'}}</ion-label>
       <ion-button fill="clear" id="open-modal1">
         <ion-icon icon="calendar"></ion-icon>
       </ion-button>
@@ -54,7 +54,7 @@
     </ion-item>
     <ion-item>
       <ion-label>End Date: </ion-label>
-      <ion-label>{{endDate | date: 'dd/MM/yyyy'}}</ion-label>
+      <ion-label>{{medication.endDate | date: 'dd/MM/yyyy'}}</ion-label>
       <ion-button fill="clear" id="open-modal2">
         <ion-icon icon="calendar"></ion-icon>
       </ion-button>

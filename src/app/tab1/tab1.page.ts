@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { StorageService } from '../storage.service';
+import { History, historyMed } from '../history';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tab1',
@@ -7,26 +10,21 @@ import { StorageService } from '../storage.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-
-  untaken = ["Lisinopril", "Levothyroxine", "Gabapentin"]
-  taken = ["Metformin", "Lipitor", "Amlodipine"]
-
-  medications = []
+  history: History
 
   constructor(private storageService: StorageService) {
-  }
-
-  async ngOnInit() {
     let today = new Date()
-    await this.storageService.getHistory()
-    .then((data) => {
-      console.log(data)
-      this.medications = data.find(o => o.date.toLocaleDateString() == today.toLocaleDateString()).medications
-      console.log(this.medications)
-    })
+    this.storageService.getHistoryByDate(today).subscribe(d=>{ this.history=d; console.log(d) });
   }
 
-  async updateHist() {
-    await this.storageService.updateHistory(this.medications, new Date())
-  }  
+  ngOnInit() {
+  }
+
+  updateHist() {
+    this.storageService.saveHist();
+  }
+
+  resetHistory() {
+    this.storageService.clearHist();
+  }
 }

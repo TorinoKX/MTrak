@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Platform } from '@ionic/angular';
 import { StorageService } from './storage.service';
 
 @Component({
@@ -7,11 +8,12 @@ import { StorageService } from './storage.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private storageService: StorageService) {
-    this.init();
+  constructor(private storageService: StorageService, private platform: Platform) {
+    this.platform.ready()
+      .then(() => this.initStorage())
   }
 
-  async init() {
+  async initStorage() {
     await this.storageService.initializeStorage();
   }
 }

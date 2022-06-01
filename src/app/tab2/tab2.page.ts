@@ -3,6 +3,9 @@ import { ModalPage } from '../modal/modal.page';
 import { ModalController } from '@ionic/angular';
 
 import { StorageService } from '../storage.service';
+import { Observable } from 'rxjs';
+import { Medication } from '../medication';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tab2',
@@ -11,17 +14,18 @@ import { StorageService } from '../storage.service';
 })
 export class Tab2Page {
 
-  medications = [];
+  medications: Observable<Array<Medication>>;
 
   constructor(private modalController: ModalController, private storageService: StorageService) { }
 
-  async ngOnInit() {
-    await this.storageService.getMeds()
-    .then((data) => {
-      console.log(data)
-      this.medications = data;
-      console.log(this.medications)
-    })
+  ngOnInit() {
+    this.medications = this.storageService.getMeds();
+    // await this.storageService.getMeds()
+    // .then((data) => {
+    //   console.log(data)
+    //   this.medications = data;
+    //   console.log(this.medications)
+    // })
   }
 
   //Opens the modal with no inputs, checks if data is returned from the modal and adds it to the list if there is data.
@@ -32,8 +36,8 @@ export class Tab2Page {
     modal.onDidDismiss()
       .then((retval) => {
         if (retval.data != undefined) {
-          this.medications.push(retval.data);
-          this.storageService.setMeds(this.medications)
+          console.log(retval.data)
+          this.storageService.addMed(retval.data);
         }
       });
     return modal.present();
@@ -41,24 +45,24 @@ export class Tab2Page {
 
   //Opens the modal with the data from the list item to be edited, checks if data is returned from the modal and changes the list item to match returned data.
   async editMedication(index) {
+    let medicationToEdit = this.storageService.getMedication(index);
     const modal = await this.modalController.create({
       component: ModalPage,
-      componentProps: {name: this.medications[index].name, manufacturer: this.medications[index].manufacturer, amountTaken: this.medications[index].amountTaken, startDate: this.medications[index].startDate, endDate: this.medications[index].endDate}
+      componentProps: {medication: medicationToEdit}
     });
 
     modal.onDidDismiss()
       .then((retval) => {
         if (retval.data !== undefined) {
-          this.medications[index] = retval.data
-          this.storageService.setMeds(this.medications)
+          // this.medications[index] = retval.data
+          // this.storageService.setMeds(this.medications)
+          this.storageService.saveMeds()
         }
       });
       return modal.present();
   }
 
-  //Removes list item at the index supplied
-  deleteMedication(index) {
-    this.medications.splice(index, 1);
+  deleteMedications(index) {
+    this.storageService.deleteMedication(index)
   }
 }
-
