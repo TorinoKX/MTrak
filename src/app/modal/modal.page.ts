@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavParams, ModalController } from '@ionic/angular';
 import { IonDatetime } from '@ionic/angular';
-import { Medication } from '../medication';
+import { Medication } from '../models/medication';
 
 @Component({
   selector: 'app-modal',

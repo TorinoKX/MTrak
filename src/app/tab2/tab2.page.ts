@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ModalPage } from '../modal/modal.page';
 import { ModalController } from '@ionic/angular';
 
-import { StorageService } from '../storage.service';
+import { StorageService } from '../services/storage.service';
 import { Observable } from 'rxjs';
 import { Medication } from '../medication';
 import { map } from 'rxjs/operators';

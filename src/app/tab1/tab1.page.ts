@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { StorageService } from '../storage.service';
-import { History, historyMed } from '../history';
+import { StorageService } from '../services/storage.service';
+import { History, historyMed } from '../models/history';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Medication } from './medication';
-import { History, historyMed } from './history';
+import { Medication } from '../models/medication';
+import { History, historyMed } from '../models/history';
 import { map } from 'rxjs/operators';
 
 @Injectable({

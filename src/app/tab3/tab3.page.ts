@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { StorageService } from '../storage.service';
-import { History } from '../history';
+import { StorageService } from '../services/storage.service';
+import { History } from '../models/history';
 
 @Component({
   selector: 'app-tab3',
