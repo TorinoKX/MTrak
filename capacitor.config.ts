@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'au.ZakCD.MTrak',
   appName: 'MTrak',
   webDir: 'www',
   bundledWebRuntime: false

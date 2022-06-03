@@ -12,24 +12,13 @@ export class ModalPage implements OnInit {
   @ViewChild(IonDatetime, { static: true }) datetime: IonDatetime;
 
   medication: Medication;
-  // name='';
-  // manufacturer = '';
-  // amountTaken = 0;
-  // startDate = '';
-  // endDate = '';
   btnText = 'Add';
 
   constructor(private navParams: NavParams, private modalController: ModalController) { }
 
   ngOnInit() {
-    
-    this.medication = this.navParams.get('medication')
 
-    // this.name = this.navParams.get('name')
-    // this.manufacturer = this.navParams.get('manufacturer')
-    // this.amountTaken = this.navParams.get('amountTaken')
-    // this.startDate = this.navParams.get('startDate')
-    // this.endDate = this.navParams.get('endDate')
+    this.medication = this.navParams.get('medication')
 
     if (this.medication != undefined) {
       this.btnText = 'Edit';
@@ -52,5 +41,13 @@ export class ModalPage implements OnInit {
   //Closes the modal and passes back no information
   cancelModal() {
     this.modalController.dismiss();
+  }
+
+  imageSelected(files) {
+    let fileReader = new FileReader();
+    fileReader.onload = e => {
+      this.medication.photo = e.target.result as String;
+    };
+    fileReader.readAsDataURL(files[0]);
   }
 }

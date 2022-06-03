@@ -16,7 +16,7 @@
     <ion-item-sliding *ngFor="let medication of medications | async; index as i">
       <ion-item>
         <ion-thumbnail slot="start">
-          <img src="assets/images/pill-exa.jpg" />
+          <img src={{medication.photo}} />
         </ion-thumbnail>
         {{medication.name}} x {{medication.amountTaken}}
       </ion-item>

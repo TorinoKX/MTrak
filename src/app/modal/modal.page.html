@@ -13,16 +13,10 @@
   <ion-list>
     <ion-item>
       <ion-label>Image: </ion-label>
-      <ion-button fill="clear" id="open-image-example">
-        <ion-thumbnail slot="end">
-          <img src="assets/images/pill-exa.jpg" />
-        </ion-thumbnail>
-      </ion-button>
-      <ion-popover trigger="open-image-example" show-backdrop="false">
-        <ng-template>
-          <ion-label class="ion-padding-top ion-padding-bottom">Coming Soon!</ion-label>
-        </ng-template>
-      </ion-popover>
+      <input #fileInput type="file" accept="image/*" (change)="imageSelected(fileInput.files)" />
+      <ion-thumbnail slot="end">
+        <img src={{medication.photo}} />
+      </ion-thumbnail>
     </ion-item>
     <ion-item>
       <ion-label>Name: </ion-label>
