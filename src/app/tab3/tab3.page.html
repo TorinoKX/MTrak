@@ -9,19 +9,18 @@
 <ion-content [fullscreen]="true">
 
   <ion-list>
-    <ng-container *ngFor="let day of history | async">
-      <ng-container *ngIf="day.date.toLocaleDateString() < today.toLocaleDateString()">
-        <ion-list-header>
-          {{getStringDay(day.date.getDay())}} - {{day.date | date: 'dd/MM/yyyy'}}
-        </ion-list-header>
-        <ion-item *ngFor="let med of day.medications" color="success">
-          <ng-container *ngIf="med.taken == true">
-            {{med.medication.name}}
-          </ng-container>
-        </ion-item>
-      </ng-container>
+    <ng-container *ngFor="let day of historyList | async">
+      <ion-list-header>
+        {{getStringDay(day.date.getDay())}} - {{day.date | date: 'dd/MM/yyyy'}}
+      </ion-list-header>
+      <ion-item *ngFor="let taken of day.taken" color="success">
+        {{taken}}
+      </ion-item>
+      <ion-item *ngFor="let untaken of day.untaken" color="danger">
+        {{untaken}}
+      </ion-item>
     </ng-container>
-    <ng-container *ngIf="history.length <= 1">
+    <ng-container *ngIf="historyList.length <= 1">
       <p class="ion-text-center">There's nothing to see here</p>
     </ng-container>
   </ion-list>

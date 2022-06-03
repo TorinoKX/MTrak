@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Taken, takenHist } from '../models/history';
 import { StorageService } from '../services/storage.service';
-import { History } from '../models/history';
 
 @Component({
   selector: 'app-tab3',
@@ -10,13 +10,16 @@ import { History } from '../models/history';
 })
 export class Tab3Page {
 
-  today = new Date();
-  history: Observable<Array<History>>;
+  history: Observable<Array<Taken>>;
+  historyList: Observable<Array<takenHist>>;
 
   constructor(private storageService: StorageService) { }
 
   ngOnInit() {
+    this.historyList = this.storageService.getHistoryList();
     this.history = this.storageService.getHistory()
+    console.log(this.historyList)
+    console.log(this.history)
     // await this.storageService.getHistory()
     // .then((data) => {
     //   console.log(data)

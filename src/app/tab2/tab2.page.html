@@ -21,8 +21,8 @@
         {{medication.name}} x {{medication.amountTaken}}
       </ion-item>
       <ion-item-options side="end">
-        <ion-item-option (click)="editMedication(i)">Edit</ion-item-option>
-        <ion-item-option color="danger" (click)="deleteMedications(i)">Delete</ion-item-option>
+        <ion-item-option (click)="editMedication(medication.id)">Edit</ion-item-option>
+        <ion-item-option color="danger" (click)="deleteMedications(medication.id)">Delete</ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>

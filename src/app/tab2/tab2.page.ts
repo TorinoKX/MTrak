@@ -4,7 +4,7 @@ import { ModalController } from '@ionic/angular';
 
 import { StorageService } from '../services/storage.service';
 import { Observable } from 'rxjs';
-import { Medication } from '../medication';
+import { Medication } from '../models/medication';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -44,8 +44,8 @@ export class Tab2Page {
   }
 
   //Opens the modal with the data from the list item to be edited, checks if data is returned from the modal and changes the list item to match returned data.
-  async editMedication(index) {
-    let medicationToEdit = this.storageService.getMedication(index);
+  async editMedication(id) {
+    let medicationToEdit = this.storageService.getMedication(id);
     const modal = await this.modalController.create({
       component: ModalPage,
       componentProps: {medication: medicationToEdit}
@@ -54,15 +54,16 @@ export class Tab2Page {
     modal.onDidDismiss()
       .then((retval) => {
         if (retval.data !== undefined) {
+          this.storageService.saveMeds();
           // this.medications[index] = retval.data
           // this.storageService.setMeds(this.medications)
-          this.storageService.saveMeds()
+          // this.storageService.saveMeds()
         }
       });
       return modal.present();
   }
 
-  deleteMedications(index) {
-    this.storageService.deleteMedication(index)
+  deleteMedications(id) {
+    this.storageService.deleteMedication(id)
   }
 }
